@@ -2,17 +2,17 @@
 
 ## Table of Contents
 
-* [Link to a hosted version of the game](#link)
-* [Rules, how to play](#rules)
+* [Link to a hosted version of the game](#link-to-a-hosted-version-of-the-game)
+* [How to play](#how-to-play)
 * [Dependencies](#dependencies)
-* [Instructions for running the game locally](#instructions)
+* [Instructions for running the game locally](#instructions-for-running-the-game-locally)
 * [Author](#author)
 
 ## Link to a hosted version of the game
 
 https://viacheslavbulba.github.io/frogger-game/
 
-## Rules, how to play
+## How to play
 
 * Use the arrow keys to control the character (move the player up, down, left, right)
 * Avoid meeting bugs, they are your enemies
