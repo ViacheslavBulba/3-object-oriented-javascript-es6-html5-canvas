@@ -2,19 +2,39 @@
 
 ## Table of Contents
 
-- [Instructions](#instructions)
-- [Contributing](#contributing)
+* [Link to a hosted version of the game](#link)
+* [Rules, how to play](#rules)
+* [Dependencies](#dependencies)
+* [Instructions for running the game locally](#instructions)
+* [Author](#author)
 
-## Instructions
+## Link to a hosted version of the game
 
-Use this [rubric](https://review.udacity.com/#!/rubrics/15/view) for self-checking your submission.
+https://viacheslavbulba.github.io/frogger-game/
 
-Make sure the functions you write are **object-oriented** - either class functions (like `Player` and `Enemy`) or class prototype functions such as `Enemy.prototype.checkCollisions`. Also make sure that the keyword `this` is used appropriately within your class and class prototype functions to refer to the object the function is called upon.
+## Rules, how to play
 
-Your **README.md** file should be updated with instructions on both how to 1. Run and 2. Play your arcade game.
+* Use the arrow keys to control the character (move the player up, down, left, right)
+* Avoid meeting bugs, they are your enemies
+* Collision with a bug will return the player to the initial position
+* Player skin will be randomly changed when you reach the water
+* The speed of bugs is assigned randomly each time they are crossing the screen
+* The game is over when a bug hits you
+* The game displays your score - number of times you reached the water without meeting the bugs
 
-For detailed instructions on how to get started, check out this [guide](https://docs.google.com/document/d/1v01aScPjSWCCWQLIpFqvg3-vXLH2e8_SZQKC8jNO0Dc/pub?embedded=true).
+## Dependencies
 
-## Contributing
+You will need an internet connection to fetch the following resources used:
 
-This repository is the starter code for _all_ Udacity students. Therefore, we most likely will not accept pull requests.
+* [Awesome Font 4.6.1](https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css)
+* [Coda Font](https://fonts.googleapis.com/css?family=Coda)
+
+## Instructions for running the game locally
+
+1. Clone the repo using command line: git clone https://github.com/ViacheslavBulba/frogger-game.git
+2. Go inside frogger-game folder
+3. Run index.html
+
+## Author
+
+Implemented by Viacheslav Bulba in 2019 as a part of Front-End Web Developer Nanodegree program on Udacity
