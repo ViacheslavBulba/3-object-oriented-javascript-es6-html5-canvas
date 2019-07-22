@@ -63,9 +63,6 @@ const Player = function (x = blockWidth * 2, y = blockHeight*5-playerImageYOffse
     this.sprite = 'images/char-boy.png';//initial skin for the player is the char boy
 }
 
-Player.prototype.update = function(dt) {
-
-};
 
 Player.prototype.resetPosition = function() {
     this.x = blockWidth * 2;
@@ -150,6 +147,5 @@ document.addEventListener('keyup', function(e) {
         39: 'right',
         40: 'down'
     };
-
     player.handleInput(allowedKeys[e.keyCode]);
 });
