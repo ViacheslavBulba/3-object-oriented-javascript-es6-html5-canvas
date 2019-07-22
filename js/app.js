@@ -16,7 +16,7 @@ function getRandomSpeed(){
 }
 
 // Enemies our player must avoid
-var Enemy = function(x, y, speed) {
+const Enemy = function(x, y, speed) {
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
 
@@ -65,13 +65,14 @@ Enemy.prototype.render = function() {
 // a handleInput() method.
 
 
-var Player = function (x = blockWidth * 2, y = blockHeight*5-playerImageYOffset){
+const Player = function (x = blockWidth * 2, y = blockHeight*5-playerImageYOffset){
     this.x = x;
     this.y = y;
     this.sprite = 'images/char-boy.png';
 }
 
 Player.prototype.update = function(dt) {
+
 };
 
 Player.prototype.resetPosition = function() {
@@ -79,11 +80,36 @@ Player.prototype.resetPosition = function() {
     this.y = blockHeight*5-playerImageYOffset;
 };
 
+Player.prototype.setRandomSkin = function() {
+    const random = 1 + Math.round(Math.random() * 4);
+    switch (random) {
+        case 1:
+            this.sprite = 'images/char-boy.png';
+            break;
+        case 2:
+            this.sprite = 'images/char-cat-girl.png';
+            break;
+        case 3:
+            this.sprite = 'images/char-horn-girl.png';
+            break;
+        case 4:
+            this.sprite = 'images/char-pink-girl.png';
+            break;
+        case 5:
+            this.sprite = 'images/char-princess-girl.png';
+            break;
+    }
+    console.log("skin: " + random + ", " + this.sprite);
+};
+
 Player.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
 Player.prototype.handleInput = function(key) {
+    if (this.y < 0) { //if player has already reached the water, do nothing waiting to setTimeout will reset it
+        return;
+    }
     switch (key) {
         case 'left':
             this.x > 0 ? this.x -= blockWidth : this.x -= 0;
@@ -101,8 +127,10 @@ Player.prototype.handleInput = function(key) {
     if (this.y < 0) {
         setTimeout(function (){
             player.resetPosition();
+            player.setRandomSkin();
         }, 600);
     }
+    console.log("player Y position: " + this.y);
 };
 
 
@@ -115,11 +143,11 @@ const enemyLocation = [blockHeight*1-enemyImageYOffset,blockHeight*2-enemyImageY
 
 
 enemyLocation.forEach(function (locationY) {
-    enemy = new Enemy(-blockWidth, locationY, getRandomSpeed());//MAKE DEFAULT VALUES TO CREATE WITHOUT PARAMETERS
+    const enemy = new Enemy(-blockWidth, locationY, getRandomSpeed());//MAKE DEFAULT VALUES TO CREATE WITHOUT PARAMETERS
     allEnemies.push(enemy);
 });
 
-var player = new Player();
+const player = new Player();
 
 
 
