@@ -12,17 +12,24 @@ function getRandomSpeed(){
     return 100 + Math.floor(Math.random() * 400);//min speed = 100, max speed = 500
 }
 
-// Enemies our player must avoid
-class Enemy {
-    constructor(y, speed = getRandomSpeed()) {
-        // Variables applied to each of our instances go here,
-        // we've provided one for you to get started
-        this.x = -blockWidth;
+class Character {
+    constructor(x, y, sprite) {
+        this.x = x;
         this.y = y;
+        this.sprite = sprite;
+    };
+
+    //Draw the character on the screen
+    render() {
+        ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+    }
+}
+
+// Enemies our player must avoid
+class Enemy extends Character {
+    constructor(y, speed = getRandomSpeed()) {
+        super(-blockWidth, y, 'images/enemy-bug.png');
         this.speed = speed;
-        // The image/sprite for our enemies, this uses
-        // a helper we've provided to easily load images
-        this.sprite = 'images/enemy-bug.png';
     }
 
     // Update the enemy's position, required method for game
@@ -45,20 +52,11 @@ class Enemy {
             player.resetPosition();
         }
     }
-
-    // Draw the enemy on the screen, required method for game
-    render() {
-        ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-    }
 }
 
-//-------------------------------------------------------
-
-class Player {
+class Player extends Character {
     constructor(x = blockWidth * 2, y = playerBottomYPosition) {
-        this.x = x;
-        this.y = y;
-        this.sprite = 'images/char-boy.png';//initial skin for the player is the char boy
+        super(x, y, 'images/char-boy.png');//initial skin for the player is the char boy
     };
 
     resetPosition() {
@@ -113,16 +111,7 @@ class Player {
             }, 600);
         }
     };
-
-    // Draw the player on the screen
-    render() {
-        ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-    };
 }
-
-
-
-
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
@@ -136,10 +125,6 @@ enemyLocation.forEach(function (locationY) {
 });
 
 const player = new Player();
-
-
-
-
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
