@@ -16,16 +16,15 @@ function getRandomSpeed(){
 }
 
 // Enemies our player must avoid
-const Enemy = function(x, y, speed) {
+const Enemy = function(y, speed = getRandomSpeed()) {
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
-
+    this.x = -blockWidth;
+    this.y = y;
+    this.speed = speed;
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
     this.sprite = 'images/enemy-bug.png';
-    this.x = x;
-    this.y = y;
-    this.speed = speed;
 };
 
 // Update the enemy's position, required method for game
@@ -39,13 +38,7 @@ Enemy.prototype.update = function(dt) {
         this.x = -blockWidth;
         this.speed = getRandomSpeed();
     }
-    /*if (this.x + enemyImageRightBorderPixel > player.x + playerImageLeftBorderPixel &&
-        this.x + enemyImageLeftBorderPixel < player.x + playerImageRightBorderPixel &&
-        this.y + enemyImageBottomBorderPixel > player.y + playerImageBottomBorderPixel&&
-        this.y + enemyImageTopBorderPixel < player.y + playerImageTopBorderPixel){
-        player.resetPosition();
-    }*/
-
+    //check if enemy and player collision happens
     if (this.x + collisionXOffset > player.x &&
         this.x - collisionXOffset < player.x &&
         this.y + collisionYOffset > player.y &&
@@ -64,11 +57,10 @@ Enemy.prototype.render = function() {
 // This class requires an update(), render() and
 // a handleInput() method.
 
-
 const Player = function (x = blockWidth * 2, y = blockHeight*5-playerImageYOffset){
     this.x = x;
     this.y = y;
-    this.sprite = 'images/char-boy.png';
+    this.sprite = 'images/char-boy.png';//initial skin for the player is the char boy
 }
 
 Player.prototype.update = function(dt) {
@@ -99,7 +91,6 @@ Player.prototype.setRandomSkin = function() {
             this.sprite = 'images/char-princess-girl.png';
             break;
     }
-    console.log("skin: " + random + ", " + this.sprite);
 };
 
 Player.prototype.render = function() {
@@ -130,7 +121,6 @@ Player.prototype.handleInput = function(key) {
             player.setRandomSkin();
         }, 600);
     }
-    console.log("player Y position: " + this.y);
 };
 
 
@@ -140,10 +130,8 @@ Player.prototype.handleInput = function(key) {
 
 const allEnemies = [];
 const enemyLocation = [blockHeight*1-enemyImageYOffset,blockHeight*2-enemyImageYOffset,blockHeight*3-enemyImageYOffset];
-
-
 enemyLocation.forEach(function (locationY) {
-    const enemy = new Enemy(-blockWidth, locationY, getRandomSpeed());//MAKE DEFAULT VALUES TO CREATE WITHOUT PARAMETERS
+    const enemy = new Enemy(locationY);
     allEnemies.push(enemy);
 });
 
