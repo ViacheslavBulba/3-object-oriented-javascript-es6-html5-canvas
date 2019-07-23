@@ -1,3 +1,12 @@
 body {
-    text-align: center;
+     text-align: center;
+     background: #ffffff url('../images/background.png'); /* Background pattern from Subtle Patterns */
+     font-family: 'Coda', cursive;
+     margin: 0;
+     padding: 0;
+ }
+
+.header {
+    margin: 0;
+    padding: 0;
 }

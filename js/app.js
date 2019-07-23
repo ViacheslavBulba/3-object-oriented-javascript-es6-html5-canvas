@@ -1,3 +1,19 @@
+/*jshint esversion: 6 */
+
+/*
+JavaScript code for memory game with cards
+The following logic is implemented:
+* Use the arrow keys to control the character (move the player up, down, left, right)
+* Avoid meeting bugs, they are your enemies
+* The game displays your score - number of times you reached the water without meeting the bugs
+* Collision with a bug will return the player to the initial position and reset your score
+* Player skin will be randomly changed when you reach the water
+* The speed of bugs is assigned randomly each time they are crossing the screen
+*/
+
+// Whole-script strict mode syntax
+"use strict";
+
 const canvasWidth = 505;
 const blockWidth = 101;
 const blockHeight = 83;
@@ -5,10 +21,22 @@ const playerImageYOffset = 10;
 const enemyImageYOffset = 20;
 const collisionXOffset = 80;
 const collisionYOffset = 60;
+let score = 0;
+const scoreCounter = document.querySelector('.score');
 
-const playerBottomYPosition = blockHeight*5-playerImageYOffset;
+function increaseScore() {
+    score++;
+    scoreCounter.innerText = score;
+}
 
-function getRandomSpeed(){
+function resetScore() {
+    score = 0;
+    scoreCounter.innerText = score;
+}
+
+const playerBottomYPosition = blockHeight * 5 - playerImageYOffset;
+
+function getRandomSpeed() {
     return 100 + Math.floor(Math.random() * 400);//min speed = 100, max speed = 500
 }
 
@@ -17,7 +45,7 @@ class Character {
         this.x = x;
         this.y = y;
         this.sprite = sprite;
-    };
+    }
 
     //Draw the character on the screen
     render() {
@@ -32,7 +60,7 @@ class Enemy extends Character {
         this.speed = speed;
     }
 
-    // Update the enemy's position, required method for game
+    // Update the enemy's position
     // Parameter: dt, a time delta between ticks
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
@@ -50,6 +78,7 @@ class Enemy extends Character {
             this.y - collisionYOffset < player.y
         ) {
             player.resetPosition();
+            resetScore();
         }
     }
 }
@@ -57,12 +86,12 @@ class Enemy extends Character {
 class Player extends Character {
     constructor(x = blockWidth * 2, y = playerBottomYPosition) {
         super(x, y, 'images/char-boy.png');//initial skin for the player is the char boy
-    };
+    }
 
     resetPosition() {
         this.x = blockWidth * 2;
         this.y = playerBottomYPosition;
-    };
+    }
 
     setRandomSkin() {
         const random = 1 + Math.round(Math.random() * 4);
@@ -83,7 +112,7 @@ class Player extends Character {
                 this.sprite = 'images/char-princess-girl.png';
                 break;
         }
-    };
+    }
 
     //handles for key presses (left, right, up, down)
     handleInput(key) {
@@ -101,24 +130,22 @@ class Player extends Character {
                 this.y > 0 ? this.y -= blockHeight : this.y -= 0;
                 break;
             case 'down':
-                this.y < blockHeight*5-10 ? this.y += blockHeight : this.y += 0;
+                this.y < blockHeight * 5 - 10 ? this.y += blockHeight : this.y += 0;
                 break;
         }
         if (this.y < 0) {
-            setTimeout(function (){
+            setTimeout(function () {
                 player.resetPosition();
                 player.setRandomSkin();
+                increaseScore();
             }, 600);
         }
-    };
+    }
 }
 
-// Now instantiate your objects.
-// Place all enemy objects in an array called allEnemies
-// Place the player object in a variable called player
-
+// Objects instantiation
 const allEnemies = [];
-const enemyLocation = [blockHeight*1-enemyImageYOffset,blockHeight*2-enemyImageYOffset,blockHeight*3-enemyImageYOffset];
+const enemyLocation = [blockHeight - enemyImageYOffset, blockHeight * 2 - enemyImageYOffset, blockHeight * 3 - enemyImageYOffset];
 enemyLocation.forEach(function (locationY) {
     const enemy = new Enemy(locationY);
     allEnemies.push(enemy);
@@ -128,7 +155,7 @@ const player = new Player();
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
-document.addEventListener('keyup', function(e) {
+document.addEventListener('keyup', function (e) {
     const allowedKeys = {
         37: 'left',
         38: 'up',
