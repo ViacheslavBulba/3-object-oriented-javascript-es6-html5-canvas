@@ -16,6 +16,10 @@ The starter code had a static, non-interactive version of the game: visual asset
 The <canvas> element has already been created and the two-dimensional drawing context for the canvas element is available.
 The task was to build your own version of the classic arcade game Frogger, using ES6 classes and inheritance. Add a number of entities to the game, including the player characters and enemies.
 
+```diff
+- This App is not responsive to screen resolutions with width below canvas width = 505 pixels and can be played only using a keyboard (does not support touches or clicks).
+```
+
 ## Steps implemented
 
 1. Player class
@@ -46,8 +50,6 @@ https://viacheslavbulba.github.io/3-object-oriented-javascript-es6-html5-canvas/
 * Player skin will be randomly changed when you reach the water
 
 ## Dependencies
-
-This App is not responsive to screen resolutions with width below canvas width = 505 pixels and can be played only using a keyboard (does not support touches or clicks).
 
 The following external resources are used:
 
