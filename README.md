@@ -17,7 +17,8 @@ The <canvas> element has already been created and the two-dimensional drawing co
 The task was to build your own version of the classic arcade game Frogger, using ES6 classes and inheritance. Add a number of entities to the game, including the player characters and enemies.
 
 ```diff
-- This App is not responsive to screen resolutions with width below canvas width = 505 pixels and can be played only using a keyboard (does not support touches or clicks).
+! This App is not responsive to screen resolutions with width below canvas width = 505 pixels
+! and can be played only using a keyboard (does not support touches or clicks).
 ```
 
 ## Steps implemented
