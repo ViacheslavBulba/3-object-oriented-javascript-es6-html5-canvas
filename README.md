@@ -29,7 +29,6 @@ The task was to build your own version of the classic arcade game Frogger, using
 9. Player cannot move off screen
 10. Player reaches the water
 11. Score
-12. App is responsive and usable across different screen resolutions
 
 ## Link to a hosted version of the game
 
@@ -47,6 +46,8 @@ https://viacheslavbulba.github.io/3-object-oriented-javascript-es6-html5-canvas/
 * Player skin will be randomly changed when you reach the water
 
 ## Dependencies
+
+This App is not responsive to screen resolutions with width below canvas width = 505 pixels.
 
 The following external resources are used:
 
