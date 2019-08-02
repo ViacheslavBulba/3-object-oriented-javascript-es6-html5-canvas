@@ -47,7 +47,7 @@ https://viacheslavbulba.github.io/3-object-oriented-javascript-es6-html5-canvas/
 
 ## Dependencies
 
-This App is not responsive to screen resolutions with width below canvas width = 505 pixels.
+This App is not responsive to screen resolutions with width below canvas width = 505 pixels and can be played only using a keyboard (does not support touches or clicks).
 
 The following external resources are used:
 
